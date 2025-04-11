@@ -1,0 +1,7 @@
+---
+- name: "Setup | Install tmuxinator"
+  ansible.builtin.include_tasks:
+    file: "default/tmuxinator.yml"
+  when: "desktop_tmux_tmuxinator | bool"
+
+...

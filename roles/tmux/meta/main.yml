@@ -1,0 +1,21 @@
+---
+galaxy_info:
+  author: "MTO79"
+  role_name: "tmux"
+  description: "Install and configure tmux."
+  license: "MIT"
+  min_ansible_version: "2.15.0"
+  standalone: true
+
+  platforms:
+    - name: "Fedora"
+      versions:
+        - "41"
+
+  galaxy_tags:
+    - "linux"
+    - "mto79"
+    - "desktop"
+    - "tmux"
+
+dependencies: []

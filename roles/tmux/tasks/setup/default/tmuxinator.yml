@@ -1,0 +1,6 @@
+---
+- name: Show default shell
+  ansible.builtin.debug:
+    msg: "Default shell is {{ ansible_env.SHELL }}"
+
+...

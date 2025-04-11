@@ -1,0 +1,7 @@
+---
+- name: Run the mto79.desktop.tmux role.
+  hosts: '{{ target | default("tmux") }}'
+  roles:
+    - { role: mto79.desktop.tmux, tags: ['desktop', 'tmux']}
+
+...

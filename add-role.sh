@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-COLLECTION_NAME=$(grep 'name: \w*' galaxy.yml | awk '{print $2}')
+COLLECTION_NAME=$(grep '^name:' galaxy.yml | awk '{print $2}' | sed 's/^"\(.*\)"$/\1/')
 
 echo "Enter role name: "
 read ROLE_NAME
