@@ -1,0 +1,5 @@
+---
+desktop_tmux_tmuxinator_dependencies:
+  - "ruby"
+  - "ruby-dev"
+  - "build-essential"

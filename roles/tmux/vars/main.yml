@@ -1,5 +1,5 @@
 ---
-__role_name: "tmux"
+__role_name: "desktop_tmux"
 
 __role_file_search_order:
   - "{{ (ansible_facts['distribution'] | lower) | replace(' ', '_') }}_\
@@ -21,9 +21,7 @@ __role_file_search_order:
   - "default.yml" # default.yml
 
 __role_required_facts:
-  - distribution
-  - distribution_major_version
-  - distribution_version
-  - os_family
-
-...
+  - "distribution"
+  - "distribution_major_version"
+  - "distribution_version"
+  - "os_family"

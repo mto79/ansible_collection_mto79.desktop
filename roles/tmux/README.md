@@ -25,9 +25,9 @@ Table of Contents
 ### Setup
 
 | Variable | Type | Default | Description |
-| ------------------------------ | ------- | ------- | ----------- |
+| ---------Default--------------------- | ------- | ------- | ----------- |
 | `desktop_tmux_tmuxinator_enabled` | Boolean | `false` | Enable tmuxinator |
-
+| `desktop_tmux_tmuxinator_dependencies` | List | `[]` | List of dependencies for tmuxinator |
 
 ### Upstream
 

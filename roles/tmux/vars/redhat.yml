@@ -1,0 +1,7 @@
+---
+desktop_tmux_tmuxinator_dependencies:
+  - "ruby"
+  - "ruby-devel"
+  - "gcc"
+  - "make"
+  - "redhat-rpm-config"

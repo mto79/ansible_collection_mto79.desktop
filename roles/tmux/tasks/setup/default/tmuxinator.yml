@@ -13,4 +13,26 @@
   ansible.builtin.debug:
     msg: "Tmuxinator check: {{ _desktop_tmux_tmuxinator_check.stdout }}"
 
+- name: "Desktop | Tmux | Tmuxinator | Install tmuxinator"
+  when: "_desktop_tmux_tmuxinator_check.rc != 0"
+  block:
+
+    - name: "Desktop | Tmux | Tmuxinator | Install dependencies"
+      become: true
+      ansible.builtin.package:
+        name: "{{ desktop_tmux_tmuxinator_dependencies }}"
+        state: present
+
+    - name: "Desktop | Tmux | Tmuxinator | Ruby install gem tmuxinator"
+      ansible.builtin.command: >
+        gem install tmuxinator
+      register: "_desktop_tmux_tmuxinator_install"
+      changed_when: true
+
+  rescue:
+
+    - name: "Desktop | Tmux | Tmuxinator | Display error message"
+      ansible.builtin.debug:
+        msg: "Tmuxinator installation failed. Please check the logs for more details." 
+
 ...
