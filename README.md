@@ -2,6 +2,7 @@
 
 This ansible collection includes a number of roles for installing and configuring tools for my personal desktop setup .
 
+Author: Marc Ouwerkerk, [marc@mto.nu](mailto:marc@mto.nu) 
 Repo: [ansible_collection_mto79.desktop](https://github.com/mto79/ansible_collection_mto79.desktop)
 
 
