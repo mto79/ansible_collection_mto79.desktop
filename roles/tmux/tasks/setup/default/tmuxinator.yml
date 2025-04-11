@@ -1,6 +1,16 @@
 ---
-- name: Show default shell
+- name: "Desktop | Tmux | Tmuxinator | Show default shell"
   ansible.builtin.debug:
     msg: "Default shell is {{ ansible_env.SHELL }}"
+
+- name: "Desktop | Tmux | Tmuxinator | Check if tmuxinator is installed"
+  ansible.builtin.command: "which tmuxinator"
+  register: "_desktop_tmux_tmuxinator_check"
+  changed_when: false
+  failed_when: false
+
+- name: "Desktop | Tmux | Tmuxinator | Display tmuxinator check"
+  ansible.builtin.debug:
+    msg: "Tmuxinator check: {{ _desktop_tmux_tmuxinator_check.stdout }}"
 
 ...
