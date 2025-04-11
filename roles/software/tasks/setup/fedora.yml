@@ -1,0 +1,7 @@
+---
+- name: "Setup | Brave Browser."
+  ansible.builtin.include_tasks: "fedora/browser_brave.yml"
+  when: "workstation_software_browser_brave_install | bool"
+
+
+...

@@ -1,0 +1,7 @@
+---
+- name: Run the mto79.desktop.bravebrowser role.
+  hosts: '{{ target | default("bravebrowser") }}'
+  roles:
+    - { role: mto79.desktop.bravebrowser, tags: ['desktop', 'bravebrowser'] }
+
+...

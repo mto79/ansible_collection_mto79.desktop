@@ -1,0 +1,21 @@
+---
+- name: "Setup | Software | Fedora | Brave Browser | Install dnf-plugins-core"
+  become: true
+  ansible.builtin.dnf:
+    name: "dnf-plugins-core"
+    state: "present"
+
+- name: "Setup | Software | Fedora | Brave Browser | Ensure the brave repository is enabled"
+  become: true
+  community.general.dnf_config_manager:
+    name: "brave-browser"
+    state: "enabled"
+
+- name: "Setup | Software | Fedora | Brave Browser | Install"
+  become: true
+  ansible.builtin.dnf:
+    name: "brave-browser"
+    state: "present"
+
+
+...

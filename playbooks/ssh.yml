@@ -1,0 +1,7 @@
+---
+- name: Run the mto79.desktop.ssh role.
+  hosts: '{{ target | default("ssh") }}'
+  roles:
+    - { role: mto79.desktop.ssh, tags: ['desktop', 'ssh'] }
+
+...

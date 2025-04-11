@@ -1,0 +1,7 @@
+---
+- name: Run the mto79.desktop.hyprland role.
+  hosts: '{{ target | default("hyprland") }}'
+  roles:
+    - { role: mto79.desktop.hyprland, tags: ['desktop', 'hyprland'] }
+
+...

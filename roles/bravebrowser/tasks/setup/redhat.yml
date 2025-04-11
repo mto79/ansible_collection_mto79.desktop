@@ -1,0 +1,24 @@
+---
+- name: "Setup | Workstation | Bravebrowser | Add rpm key"
+  become: true
+  ansible.builtin.rpm_key:
+    key: "{{ workstation_bravebrowser_key_url }}"
+
+- name: "Setup | Workstation | Bravebrowser | Add yum repository"
+  ansible.builtin.yum_repository:
+    baseurl: "{{ workstation_bravebrowser_repository }}"
+    description: "Brave Browser repository"
+    gpgcheck: true
+    gpgkey: "{{ workstation_bravebrowser_key_url }}"
+    name: "brave-browser"
+    repo_gpgcheck: true
+
+- name: "Setup | Workstation | Bravebrowser | Ensure Brave Broser is installed"
+  become: true
+  ansible.builtin.dnf:
+    name: "{{ workstation_bravebrowser_package }}"
+    state: "{{ workstation_bravebrowser_package_state | default('present') }}"
+    update_cache: true
+
+
+...

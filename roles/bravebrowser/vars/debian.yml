@@ -1,0 +1,7 @@
+---
+workstation_bravebrowser_key_url: "https://brave-browser-apt-release.s3.brave.com/brave-core.asc"
+workstation_bravebrowser_repository: "deb [arch=amd64] https://brave-browser-apt-release.s3.brave.com/ stable main"
+workstation_bravebrowser_package: "brave-browser"
+workstation_bravebrowser_package_state: 
+
+...

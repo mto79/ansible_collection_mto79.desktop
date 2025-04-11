@@ -1,0 +1,23 @@
+---
+- name: "Setup | Workstation | Bravebrowser | Add apt key"
+  become: true
+  ansible.builtin.apt_key:
+    state: "present"
+    url: '{{ workstation_bravebrowser_key_url }}'
+
+- name: "Setup | Workstation | Bravebrwoser | Add apt repository"
+  become: true
+  ansible.builtin.apt_repository:
+    filename: "{{ app_name | lower | replace(' ', '-') }}"
+    repo: '{{ workstation_bravebrowser_repository }}'
+    state: "present"
+    update_cache: "{{ omit if skip_package_cache_update is defined else 'true' }}"
+
+- name: "Setup | Workstation | Bravebrowser | Ensure brave-browser is installed"
+  become: true
+  ansible.builtin.apt:
+    name: "{{ workstation_bravebrowser_package }}"
+    state: "{{ workstation_bravebrowser_package_state | default('present') }}"
+    update_cache: true
+
+...

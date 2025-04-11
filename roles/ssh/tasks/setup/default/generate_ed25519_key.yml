@@ -1,0 +1,27 @@
+---
+# To be built further, make more dynamic with variabeles
+
+- name: "Setup - Generate Ed25519 SSH Key Pair"
+  block:
+
+    - name: "Setup - Ensure SSH directory exists"
+      ansible.builtin.file:
+        path: "~/.ssh"
+        state: "directory"
+        mode: "0700"
+
+    - name: "Setup - Check if Ed25519 private key exists"
+      ansible.builin.stat:
+        path: "~/.ssh/id_ed25519"
+      register: "workstation_ssh_key_stat"
+
+    - name: "Setup - Generate Ed25519 SSH key pair if not present"
+      when: "not workstation_ssh_key_stat.stat.exists"
+      ansible.builtin.command: >
+        ssh-keygen -t ed25519
+        -C "your_email@example.com"
+        -f ~/.ssh/id_ed25519
+        -N ""
+      changed_when: false
+
+...

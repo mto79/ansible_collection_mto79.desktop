@@ -1,0 +1,7 @@
+---
+- name: Run the mto79.desktop.software role.
+  hosts: '{{ target | default("software") }}'
+  roles:
+    - { role: mto79.desktop.software, tags: ['desktop', 'software'] }
+
+...
