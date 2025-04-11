@@ -26,7 +26,7 @@ Table of Contents
 
 | Variable | Type | Default | Description |
 | ------------------------------ | ------- | ------- | ----------- |
-| `desktop_tmux_tmuxinator_enable` | Boolean | `false` | Enable tmuxinator |
+| `desktop_tmux_tmuxinator_enabled` | Boolean | `false` | Enable tmuxinator |
 
 
 ### Upstream
