@@ -1,0 +1,11 @@
+---
+# Alacritty
+desktop_terminal_setup_alacritty_enabled: false
+desktop_terminal_setup_alacritty_repo_package: "alacritty"
+
+# Ghostty
+desktop_terminal_setup_ghostty_enabled: false
+desktop_terminal_setup_ghostty_install_method: "copr" # Options: "copr", "appimage"
+desktop_terminal_setup_ghostty_copr_package: "ghostty-git" # Options: "ghostty", "ghostty-git"
+
+...

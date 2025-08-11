@@ -1,0 +1,14 @@
+---
+- name: "Setup | Terminal | Install Alacritty"
+  ansible.builtin.include_tasks:
+    file: "fedora/alacritty.yml"
+
+- name: "Setup | Terminal | Install Ghostty"
+  ansible.builtin.include_tasks:
+    file: "fedora/ghostty.yml"
+
+- name: "Setup | Terminal | Install Kitty"
+  ansible.builtin.include_tasks:
+    file: "fedora/kitty.yml"
+
+...

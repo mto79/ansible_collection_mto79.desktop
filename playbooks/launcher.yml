@@ -1,0 +1,7 @@
+---
+- name: Run the mto79.desktop.launcher role.
+  hosts: '{{ target | default("launcher") }}'
+  roles:
+    - { role: mto79.desktop.launcher, tags: ['desktop', 'launcher']}
+
+...

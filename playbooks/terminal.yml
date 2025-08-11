@@ -1,0 +1,7 @@
+---
+- name: Run the mto79.desktop.terminal role.
+  hosts: '{{ target | default("terminal") }}'
+  roles:
+    - { role: mto79.desktop.terminal, tags: ['desktop', 'terminal']}
+
+...

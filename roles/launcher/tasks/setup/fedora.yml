@@ -1,0 +1,10 @@
+---
+- name: "Setup | Launcher | Install Walker"
+  ansible.builtin.include_tasks:
+    file: "fedora/walker.yml"
+
+- name: "Setup | Launcher | Install Wofi"
+  ansible.builtin.include_tasks:
+    file: "fedora/wofi.yml"
+
+...

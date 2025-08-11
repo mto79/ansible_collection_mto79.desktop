@@ -1,0 +1,59 @@
+---
+- name: "Desktop | Launcher | Setup | Walker | Install Walker via COPR"
+  become: true
+  when:
+    - "desktop_launcher_setup_walker_enabled | bool"
+    - "desktop_launcher_setup_walker_install_method == 'copr'"
+  block:
+
+    - name: "Desktop | Launcher | Setup | Walker | Copr Install"
+      ansible.builtin.debug:
+        msg: "Installing Walker [Copr]"
+
+    - name: "Desktop | Launcher | Setup | Walker | Enable COPR repository for Walker"
+      community.general.copr:
+        host: "copr.fedorainfracloud.org"
+        state: "enabled"
+        name: "errornointernet/walker"
+
+    - name: "Desktop | Launcher | Setup | Walker | Install Walker package"
+      ansible.builtin.dnf:
+        name: "{{ desktop_launcher_setup_walker_copr_package }}"
+        state: "present"
+        update_cache: true
+
+  rescue:
+
+    - name: "Desktop | Launcher | Setup | Walker | Copr Install"
+      ansible.builtin.debug:
+        msg: "Copr install of Walker failed"
+
+- name: "Desktop | Launcher | Setup | Walker | Remove Walker via COPR"
+  become: true
+  when:
+    - "not desktop_launcher_setup_walker_enabled | bool"
+    - "desktop_launcher_setup_walker_install_method == 'copr'"
+  block:
+
+    - name: "Desktop | Launcher | Setup | Walker | Copr Remove"
+      ansible.builtin.debug:
+        msg: "Removing Walker [Copr]"
+
+    - name: "Desktop | Launcher | Setup | Walker | Remove Walker package"
+      ansible.builtin.dnf:
+        name: "{{ desktop_launcher_setup_walker_copr_package }}"
+        state: "absent"
+        update_cache: true
+
+    - name: "Desktop | Launcher | Setup | Walker | Disable COPR repository for Walker"
+      community.general.copr:
+        host: "copr.fedorainfracloud.org"
+        state: "absent"
+        name: "errornointernet/walker"
+
+  rescue:
+
+    - name: "Desktop | Launcher | Setup | Walker | Copr Removal"
+      ansible.builtin.debug:
+        msg: "Copr removal of Walker failed"
+...

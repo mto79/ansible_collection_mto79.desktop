@@ -1,0 +1,60 @@
+---
+- name: "Desktop | Terminal | Setup | Ghostty | Install"
+  become: true
+  when:
+    - "desktop_terminal_setup_ghostty_enabled | bool"
+    - "desktop_terminal_setup_ghossty_install_method == 'copr'"
+  block:
+
+    - name: "Desktop | Terminal | Setup | Ghostty | Copr Install"
+      ansible.builtin.debug:
+        msg: "Installing Ghostty [Copr]"
+
+    - name: "Desktop | Terminal | Setup | Ghostty | Copr Repo"
+      community.general.copr:
+        host: "copr.fedorainfracloud.org"
+        state: "enabled"
+        name: "pgdev/ghostty"
+
+    - name: "Desktop | Terminal | Setup | Ghostty | Copr Install"
+      ansible.builtin.dnf:
+        name: "{{ desktop_terminal_setup_ghostty_copr_package }}"
+        state: "present"
+        update_cache: true
+
+  rescue:
+
+    - name: "Desktop | Terminal | Setup | Ghostty | Copr Install"
+      ansible.builtin.debug:
+        msg: "Copr install of Ghostty failed"
+
+- name: "Desktop | Terminal | Setup | Ghostty | Removal"
+  become: true
+  when:
+    - "not desktop_terminal_setup_ghostty_enabled | bool"
+    - "desktop_terminal_ghossty_setup_install_method == 'copr'"
+  block:
+
+    - name: "Desktop | Terminal | Setup | Ghostty | Copr Removal"
+      ansible.builtin.debug:
+        msg: "Removing Ghostty [Copr]"
+
+    - name: "Desktop | Terminal | Setup | Ghostty | Copr Removal"
+      ansible.builtin.dnf:
+        name: "{{ desktop_terminal_setup_ghostty_copr_package }}"
+        state: "absent"
+        update_cache: true
+
+    - name: "Desktop | Terminal | Setup | Ghostty | Copr Repo"
+      community.general.copr:
+        host: "copr.fedorainfracloud.org"
+        state: "absent"
+        name: "pgdev/ghostty"
+
+  rescue:
+
+    - name: "Desktop | Terminal | Setup | Ghostty | Copr Removal"
+      ansible.builtin.debug:
+        msg: "Copr Removal of Ghostty failed"
+
+...

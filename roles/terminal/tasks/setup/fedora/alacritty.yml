@@ -1,0 +1,93 @@
+---
+- name: "Desktop | Terminal | Setup | Alacritty | Install"
+  become: true
+  when:
+    - "desktop_terminal_setup_alacritty_enabled | bool"
+    - "desktop_terminal_setup_alacritty_install_method == 'repo'"
+  block:
+
+    - name: "Desktop | Terminal | Setup | Alacritty | Repo Install"
+      ansible.builtin.debug:
+        msg: "Installing Alacritty [Repo]"
+
+    - name: "Desktop | Terminal | Setup | Alacritty | Repo Install"
+      ansible.builtin.dnf:
+        name: "{{ desktop_terminal_setup_alacritty_repo_package }}"
+        state: "present"
+        update_cache: true
+
+  rescue:
+
+    - name: "Desktop | Terminal | Setup | Alacritty | Repo Install"
+      ansible.builtin.debug:
+        msg: "Repo install of Alacritty failed"
+
+- name: "Desktop | Terminal | Setup | Alacritty | Removal"
+  become: true
+  when:
+    - "not desktop_terminal_setup_alacritty_enabled | bool"
+    - "desktop_terminal_setup_alacritty_install_method == 'repo'"
+  block:
+
+    - name: "Desktop | Terminal | Setup | Alacritty | Repo Removal"
+      ansible.builtin.debug:
+        msg: "Removing Alacritty [Repo]"
+
+    - name: "Desktop | Terminal | Setup | Alacritty | Repo Removal"
+      ansible.builtin.dnf:
+        name: "{{ desktop_terminal_setup_alacritty_repo_package }}"
+        state: "absent"
+        update_cache: true
+
+  rescue:
+
+    - name: "Desktop | Terminal | Setup | Alacritty | Repo Removal"
+      ansible.builtin.debug:
+        msg: "Copr Removal of Alacritty failed"
+
+
+# - name: Ensure required packages are installed
+#   ansible.builtin.package:
+#     name:
+#       - cmake
+#       - pkg-config
+#       - libfreetype6-dev
+#       - libfontconfig1-dev
+#       - libxcb-xfixes0-dev
+#       - libxkbcommon-dev
+#       - python3
+#       - curl
+#       - git
+#       - cargo
+#     state: present
+#
+# - name: Clone Alacritty source
+#   ansible.builtin.git:
+#     repo: 'https://github.com/alacritty/alacritty.git'
+#     dest: '{{ ansible_env.HOME }}/alacritty'
+#     version: master
+#     update: yes
+#
+# - name: Build Alacritty
+#   ansible.builtin.command:
+#     cmd: cargo build --release
+#     chdir: '{{ ansible_env.HOME }}/alacritty'
+#   args:
+#     creates: '{{ ansible_env.HOME }}/alacritty/target/release/alacritty'
+#
+# - name: Copy Alacritty binary to /usr/local/bin
+#   ansible.builtin.copy:
+#     src: '{{ ansible_env.HOME }}/alacritty/target/release/alacritty'
+#     dest: /usr/local/bin/alacritty
+#     mode: '0755'
+#     remote_src: yes
+#
+# - name: Install desktop entry and terminfo (optional)
+#   ansible.builtin.command: "{{ item }}"
+#   with_items:
+#     - 'sudo tic -xe alacritty,alacritty-direct extra/alacritty.info'
+#     - 'sudo desktop-file-install extra/linux/Alacritty.desktop'
+#     - 'sudo update-desktop-database'
+#   args:
+#     chdir: '{{ ansible_env.HOME }}/alacritty'
+#
